@@ -1,5 +1,6 @@
 package com.example.birthdaycard
 
+// It is important to keep the import section ordered alphabetically
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -10,6 +11,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.magnifier
@@ -26,7 +28,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.birthdaycard.ui.theme.BirthdayCardTheme
 
-
+/**
+ * Main activity is where the program starts executing
+ */
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,29 +41,33 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    GreetingText(message = "Happy Birthday!", from = "From")
+                    //Function calls to be set here
+                    GreetingImage(message = "Happy Birthday!", from = "From")
+
                 }
             }
         }
     }
 }
 
+//Use @Composable to declare compose components
 @Composable
 fun GreetingText(message: String, from: String, modifier: Modifier = Modifier){
+    //Column, Row and Box are the common ways to arrange items
     Column(
         verticalArrangement = Arrangement.Center,
         modifier = modifier
     ) {
         Text(
-            text = message,
-            fontSize = 100.sp,
-            lineHeight = 116.sp,
-            textAlign = TextAlign.Center
+            text = message,     //A variable can be set for the text
+            fontSize = 100.sp,  //font size
+            lineHeight = 116.sp,    //decides how much space does each line should take up
+            textAlign = TextAlign.Center   //aligns the text in its container
         )
         Text(
             text = from,
             fontSize = 30.sp,
-            modifier = modifier
+            modifier = Modifier     //another way to format text using modifiers
                 .padding(16.dp)
                 .align(alignment = Alignment.End)
         )
@@ -69,9 +77,10 @@ fun GreetingText(message: String, from: String, modifier: Modifier = Modifier){
 
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
-fun BirthdayText(){
+fun BirthdayCardPreview(){
     BirthdayCardTheme() {
-        GreetingImage(message = "Happy Birthday", from = "A ee e")
+        GreetingImage(message = "Happy Birthday!", from = "A ee e")
+
     }
 }
 
@@ -79,17 +88,17 @@ fun BirthdayText(){
 fun GreetingImage(message: String, from: String, modifier: Modifier = Modifier){
     val image = painterResource(R.drawable.androidparty)
 
-    Box(modifier = Modifier.fillMaxSize()){
+    Box {
         Image(
             painter = image,
             contentDescription = null
         )
-
-        GreetingText(message = "Happy Birthday!",
-            from = "From: aaa",
-            modifier = Modifier.align(
-            Alignment.Center
-            )
+        GreetingText(
+            message = message,
+            from = from,
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(8.dp)
         )
 
     }
