@@ -4,15 +4,23 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.example.taskmanager.ui.theme.TaskManagerTheme
 
 class MainActivity : ComponentActivity() {
@@ -25,7 +33,9 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    TaskCompleteButton(modifier = Modifier)
+                    TaskCompleteButton(
+                        modifier = Modifier
+                    )
                 }
             }
         }
@@ -33,14 +43,31 @@ class MainActivity : ComponentActivity() {
 }
 @Composable
 fun TaskCompleteButton(modifier: Modifier){
-    Column() {
-        val completeButton =
-        Image(painter = , contentDescription = )
+    Column(
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+        val completeButton = painterResource(id = R.drawable.ic_task_completed)
+
+        Image(painter = completeButton, contentDescription = null)
+
+        Text(
+            text = "All tasks completed",
+            fontWeight = FontWeight.Bold,
+            modifier = Modifier
+                .padding(top = 24.dp, bottom = 8.dp)
+
+        )
+        Text(
+            text = "Nice work!",
+            fontSize = 16.sp
+        )
+
     }
 }
 
 @Preview(showSystemUi = true, showBackground = true)
 @Composable
 fun Preview (){
-
+    TaskCompleteButton(modifier = Modifier)
 }
