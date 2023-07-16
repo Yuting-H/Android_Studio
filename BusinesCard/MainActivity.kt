@@ -44,6 +44,7 @@ fun BusinessCard(name: String, phone: String, email: String, modifier: Modifier 
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         //verticalArrangement = Arrangement.Center,
+
     ) {
 
         Text(text = "", Modifier.weight(1f))
@@ -54,11 +55,26 @@ fun BusinessCard(name: String, phone: String, email: String, modifier: Modifier 
             modifier = Modifier
                 .weight(1f)
         )
-        Text(
-            text = phone,
-            modifier = Modifier.weight(0.2f)
+        InfoPanel(
+            phone = phone,
+            email = email,
+            modifier = Modifier
+                .weight(0.2f)
         )
-       
+
     }
 
+}
+
+@Composable
+fun InfoPanel(phone: String, email: String, modifier: Modifier) {
+    Column (modifier = modifier){
+        Text(
+            text = phone
+        )
+
+        Text(
+            text = email
+        )
+    }
 }
